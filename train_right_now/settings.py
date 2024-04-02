@@ -29,6 +29,13 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+API_APP = [
+    "app.endpoints.exercise.apps.ExerciseConfig",
+    "app.endpoints.muscle.apps.MuscleConfig",
+    "app.endpoints.training.apps.TrainingConfig",
+    "app.endpoints.user.apps.UserConfig",
+    "app.endpoints.authentication.apps.AuthenticationConfig",
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+INSTALLED_APPS += API_APP
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,9 +122,9 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+# https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
