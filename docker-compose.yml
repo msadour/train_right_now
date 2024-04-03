@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: "train_right_now"
+      POSTGRES_USER: "postgres"
+      DB_USER: "postgres"
+      POSTGRES_PASSWORD: "qwertz"
+    volumes:
+      - "/var/lib/postgresql/data"
+    ports:
+      - "5432:5433"
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: >
+      sh -c "python manage.py makemigrations
+            python manage.py migrate
+            python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/train_right_now
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: always
